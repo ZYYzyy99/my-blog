@@ -37,6 +37,7 @@
           <h2>最新文章</h2>
           <p id="listHint">正在从 <code>./posts/</code> 读取 Markdown 文章...</p>
         </div>
+        <div id="categoryFilters" class="category-filters" aria-label="文章分类"></div>
         <div id="postList" class="post-list" aria-live="polite"></div>
       </section>
 
@@ -52,6 +53,7 @@
     <template id="postCardTemplate">
       <button class="post-card" type="button">
         <p class="post-card-date"></p>
+        <p class="post-card-category"></p>
         <h3 class="post-card-title"></h3>
         <p class="post-card-summary"></p>
         <p class="post-card-tags"></p>

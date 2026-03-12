@@ -1,16 +1,34 @@
 {
   "posts": [
     {
-      "file": "jinxing-notes.md",
-      "title": "笔记",
+      "file": "local-publish-guide.md",
+      "title": "本地发文使用指南",
       "date": "2026-03-12",
+      "category": "博客搭建",
+      "tags": ["guide", "markdown", "workflow"],
+      "summary": "介绍如何在本地新增文章、命名文件、填写分类日期与标签。"
+    },
+    {
+      "file": "jinxing-notes.md",
+      "title": "markdown速查",
+      "date": "2026-03-12",
+      "category": "入门使用笔记",
       "tags": ["notes", "journal"],
       "summary": "Yuanyu Zheng 的日常技术思考与随手记录。"
+    },
+     {
+      "file": "git.md",
+      "title": "git使用",
+      "date": "2026-03-12",
+      "category": "入门使用笔记",
+      "tags": ["notes", "journal"],
+      "summary": "git速查"
     },
     {
       "file": "welcome.md",
       "title": "Welcome to Signal Notes",
       "date": "2026-03-12",
+      "category": "博客搭建",
       "tags": ["meta", "setup"],
       "summary": "A short introduction and how this markdown-powered blog frontend works."
     },
@@ -18,6 +36,7 @@
       "file": "performance-tips.md",
       "title": "Frontend Performance Tips I Reuse",
       "date": "2026-03-10",
+      "category": "前端",
       "tags": ["frontend", "performance"],
       "summary": "A practical checklist for shipping quick and responsive interfaces."
     }

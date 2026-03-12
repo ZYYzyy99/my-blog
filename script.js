@@ -5,14 +5,16 @@ const listView = document.getElementById("listView");
 const postView = document.getElementById("postView");
 const postList = document.getElementById("postList");
 const listHint = document.getElementById("listHint");
+const categoryFilters = document.getElementById("categoryFilters");
 const postMeta = document.getElementById("postMeta");
 const postTitle = document.getElementById("postTitle");
 const postContent = document.getElementById("postContent");
 const backButton = document.getElementById("backButton");
 const postCardTemplate = document.getElementById("postCardTemplate");
 
-/** @type {Array<{file:string,title:string,date?:string,tags?:string[],summary?:string}>} */
+/** @type {Array<{file:string,title:string,date?:string,tags?:string[],summary?:string,category?:string}>} */
 let postCatalog = [];
+let activeCategory = "全部";
 
 marked.setOptions({
   mangle: false,
@@ -40,6 +42,18 @@ function deriveTitleFromFile(file) {
     .join(" ");
 }
 
+function resolveCategory(entry) {
+  if (entry && typeof entry.category === "string" && entry.category.trim()) {
+    return entry.category.trim();
+  }
+
+  if (entry && Array.isArray(entry.tags) && entry.tags.length) {
+    return entry.tags[0];
+  }
+
+  return "未分类";
+}
+
 function normalizeCatalog(data) {
   const list = Array.isArray(data) ? data : data?.posts;
   if (!Array.isArray(list)) return [];
@@ -58,9 +72,74 @@ function normalizeCatalog(data) {
         date: entry.date,
         tags: Array.isArray(entry.tags) ? entry.tags : [],
         summary: entry.summary || "",
+        category: resolveCategory(entry),
       };
     })
     .filter(Boolean);
+}
+
+function getCategoryStats(posts) {
+  const stats = new Map();
+
+  posts.forEach((post) => {
+    const key = post.category || "未分类";
+    stats.set(key, (stats.get(key) || 0) + 1);
+  });
+
+  return [...stats.entries()].sort((a, b) => a[0].localeCompare(b[0], "zh-CN"));
+}
+
+function getFilteredPosts(posts) {
+  if (activeCategory === "全部") return posts;
+  return posts.filter((post) => (post.category || "未分类") === activeCategory);
+}
+
+function renderCategoryFilters(posts) {
+  categoryFilters.innerHTML = "";
+  const stats = getCategoryStats(posts);
+
+  const allButton = document.createElement("button");
+  allButton.className = `category-filter${activeCategory === "全部" ? " is-active" : ""}`;
+  allButton.type = "button";
+  allButton.textContent = `全部 (${posts.length})`;
+  allButton.addEventListener("click", () => {
+    activeCategory = "全部";
+    renderCategoryFilters(postCatalog);
+    renderPostCards(postCatalog);
+  });
+  categoryFilters.appendChild(allButton);
+
+  stats.forEach(([category, count]) => {
+    const button = document.createElement("button");
+    button.className = `category-filter${activeCategory === category ? " is-active" : ""}`;
+    button.type = "button";
+    button.textContent = `${category} (${count})`;
+    button.addEventListener("click", () => {
+      activeCategory = category;
+      renderCategoryFilters(postCatalog);
+      renderPostCards(postCatalog);
+    });
+    categoryFilters.appendChild(button);
+  });
+}
+
+function createPostCard(post, index) {
+  const card = postCardTemplate.content.firstElementChild.cloneNode(true);
+  card.style.animation = `fade-slide 360ms ${index * 55}ms ease-out both`;
+  card.querySelector(".post-card-date").textContent = post.date || "未注明日期";
+  card.querySelector(".post-card-category").textContent = post.category || "未分类";
+  card.querySelector(".post-card-title").textContent = post.title;
+  card.querySelector(".post-card-summary").textContent =
+    post.summary || "点击阅读完整内容。";
+  card.querySelector(".post-card-tags").textContent =
+    post.tags && post.tags.length ? post.tags.join(" / ") : "";
+
+  card.addEventListener("click", () => {
+    const hash = new URLSearchParams({ post: post.file }).toString();
+    window.location.hash = hash;
+  });
+
+  return card;
 }
 
 async function loadCatalogFromJson() {
@@ -90,6 +169,7 @@ async function loadCatalogFromDirectoryListing() {
 
 function renderPostCards(posts) {
   postList.innerHTML = "";
+  const filteredPosts = getFilteredPosts(posts);
 
   if (!posts.length) {
     listHint.textContent =
@@ -97,25 +177,51 @@ function renderPostCards(posts) {
     return;
   }
 
-  listHint.textContent = `已发现 ${posts.length} 篇 Markdown 文章。`;
+  if (!filteredPosts.length) {
+    listHint.textContent = `分类「${activeCategory}」下暂无文章。`;
+    return;
+  }
 
-  posts.forEach((post, index) => {
-    const card = postCardTemplate.content.firstElementChild.cloneNode(true);
-    card.style.animation = `fade-slide 360ms ${index * 55}ms ease-out both`;
-    card.querySelector(".post-card-date").textContent = post.date || "未注明日期";
-    card.querySelector(".post-card-title").textContent = post.title;
-    card.querySelector(".post-card-summary").textContent =
-      post.summary || "点击阅读完整内容。";
-    card.querySelector(".post-card-tags").textContent =
-      post.tags && post.tags.length ? post.tags.join(" / ") : "";
+  if (activeCategory === "全部") {
+    const grouped = new Map();
 
-    card.addEventListener("click", () => {
-      const hash = new URLSearchParams({ post: post.file }).toString();
-      window.location.hash = hash;
+    filteredPosts.forEach((post) => {
+      const key = post.category || "未分类";
+      if (!grouped.has(key)) grouped.set(key, []);
+      grouped.get(key).push(post);
     });
 
-    postList.appendChild(card);
+    [...grouped.entries()]
+      .sort((a, b) => a[0].localeCompare(b[0], "zh-CN"))
+      .forEach(([category, items]) => {
+        const group = document.createElement("section");
+        group.className = "post-group";
+
+        const title = document.createElement("h3");
+        title.className = "post-group-title";
+        title.textContent = category;
+        group.appendChild(title);
+
+        const grid = document.createElement("div");
+        grid.className = "post-group-grid";
+
+        items.forEach((post, index) => {
+          grid.appendChild(createPostCard(post, index));
+        });
+
+        group.appendChild(grid);
+        postList.appendChild(group);
+      });
+
+    listHint.textContent = `已发现 ${posts.length} 篇文章，按分类分组展示。`;
+    return;
+  }
+
+  filteredPosts.forEach((post, index) => {
+    postList.appendChild(createPostCard(post, index));
   });
+
+  listHint.textContent = `分类「${activeCategory}」下共 ${filteredPosts.length} 篇文章。`;
 }
 
 function showListView() {
@@ -176,6 +282,7 @@ async function bootstrap() {
   }
 
   renderPostCards(postCatalog);
+  renderCategoryFilters(postCatalog);
   await refreshViewFromHash();
 }
 
