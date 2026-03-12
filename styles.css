@@ -146,6 +146,31 @@ body {
   margin-top: 1.8rem;
 }
 
+.site-footer {
+  width: min(1100px, 100%);
+  margin: 1.2rem auto 0;
+  padding: 0.6rem 0.2rem 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: right;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer-link {
+  color: var(--accent-2);
+  font-weight: 600;
+  text-decoration-color: rgba(32, 87, 111, 0.42);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 2px;
+}
+
+.site-footer-link:hover {
+  color: var(--accent);
+}
+
 .panel {
   border: 1px solid var(--panel-border);
   border-radius: 1.2rem;
@@ -380,5 +405,10 @@ body {
 
   .site-subtitle {
     font-size: 0.95rem;
+  }
+
+  .site-footer {
+    margin-top: 1rem;
+    font-size: 0.85rem;
   }
 }
