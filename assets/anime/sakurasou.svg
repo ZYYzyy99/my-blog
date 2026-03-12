@@ -1,0 +1,14 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="樱花庄的宠物女孩">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffe2c2" />
+      <stop offset="100%" stop-color="#ffeef7" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#g3)"/>
+  <circle cx="220" cy="120" r="100" fill="#ffffff" fill-opacity="0.38"/>
+  <circle cx="760" cy="420" r="128" fill="#ffffff" fill-opacity="0.36"/>
+  <rect x="120" y="330" width="720" height="120" rx="24" fill="#ffffff" fill-opacity="0.68"/>
+  <text x="140" y="390" font-family="Chivo, Segoe UI, Arial" font-size="44" fill="#6d3d2f">樱花庄的宠物女孩</text>
+  <text x="140" y="430" font-family="Chivo, Segoe UI, Arial" font-size="24" fill="#9c5a45">The Pet Girl of Sakurasou</text>
+</svg>

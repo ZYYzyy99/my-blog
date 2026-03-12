@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>个人兴趣窗口 | Signal Notes</title>
+    <meta
+      name="description"
+      content="记录我喜欢的番剧作品，包含图片、评分与个人评价。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./interests.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <p class="site-kicker">Personal Taste Window</p>
+      <h1 class="site-title">我的番剧兴趣窗口</h1>
+      <p class="site-subtitle">
+        存放我喜欢的番剧图片和主观评价，方便随时回看与持续补充。
+      </p>
+      <div class="header-actions">
+        <a class="header-link" href="./index.html">返回博客首页</a>
+        <a class="header-link" href="./resources.html">打开资料与链接库</a>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel list-panel">
+        <div class="panel-head">
+          <h2>番剧收藏</h2>
+          <p id="listHint">正在加载 ./interests/anime.json ...</p>
+        </div>
+        <div id="categoryFilters" class="category-filters" aria-label="番剧分类"></div>
+        <div id="animeList" class="anime-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <template id="animeCardTemplate">
+      <article class="anime-card">
+        <div class="anime-cover-wrap">
+          <img class="anime-cover" alt="" loading="lazy" />
+          <p class="anime-score"></p>
+        </div>
+        <div class="anime-body">
+          <p class="anime-meta">
+            <span class="anime-category"></span>
+            <span class="anime-year"></span>
+          </p>
+          <h3 class="anime-title"></h3>
+          <p class="anime-tags"></p>
+          <p class="anime-review"></p>
+        </div>
+      </article>
+    </template>
+
+    <script src="./interests.js" defer></script>
+  </body>
+</html>

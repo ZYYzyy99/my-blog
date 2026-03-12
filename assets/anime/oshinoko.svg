@@ -1,0 +1,14 @@
+<svg width="960" height="540" viewBox="0 0 960 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="我推的孩子">
+  <defs>
+    <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffd3d9" />
+      <stop offset="100%" stop-color="#ead8ff" />
+    </linearGradient>
+  </defs>
+  <rect width="960" height="540" fill="url(#g4)"/>
+  <circle cx="748" cy="126" r="96" fill="#ffffff" fill-opacity="0.4"/>
+  <circle cx="190" cy="408" r="132" fill="#ffffff" fill-opacity="0.34"/>
+  <rect x="120" y="330" width="720" height="120" rx="24" fill="#ffffff" fill-opacity="0.67"/>
+  <text x="140" y="390" font-family="Chivo, Segoe UI, Arial" font-size="48" fill="#622f70">我推的孩子</text>
+  <text x="140" y="430" font-family="Chivo, Segoe UI, Arial" font-size="24" fill="#844996">Oshi no Ko</text>
+</svg>

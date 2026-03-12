@@ -60,7 +60,21 @@ body {
 }
 
 .site-header {
+  position: relative;
+  padding-right: 6.2rem;
   animation: fade-slide 580ms ease-out both;
+}
+
+.site-avatar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4.9rem;
+  height: 4.9rem;
+  object-fit: cover;
+  border-radius: 999px;
+  border: 2px solid rgba(255, 255, 255, 0.88);
+  box-shadow: 0 10px 18px rgba(13, 18, 25, 0.18);
 }
 
 .site-kicker {
@@ -86,6 +100,9 @@ body {
 
 .header-actions {
   margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 }
 
 .header-link {
@@ -343,6 +360,17 @@ body {
 @media (max-width: 640px) {
   body {
     padding: 1.4rem 0.9rem 2.2rem;
+  }
+
+  .site-header {
+    padding-right: 0;
+  }
+
+  .site-avatar {
+    position: static;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 0.7rem;
   }
 
   .list-panel,

@@ -1,9 +1,10 @@
 # my-blog
 
-这是一个纯前端博客站点，包含两个主要页面：
+这是一个纯前端博客站点，包含三个主要页面：
 
 - 首页（index.html）：展示并阅读 Markdown 文章
 - 资料与链接库（resources.html）：集中管理文档资料和常用链接，并支持分类筛选
+- 个人兴趣窗口（interests.html）：展示番剧图片、评分与个人评价，并支持分类筛选
 
 ## 1. 目录说明
 
@@ -12,10 +13,14 @@
   - index.json 是文章索引
 - resources/
   - index.json 是资料与链接库索引
+- interests/
+  - anime.json 是番剧兴趣索引
 - index.html / script.js / styles.css
   - 博客首页及其样式和逻辑
 - resources.html / resources.js / resources.css
   - 资料与链接库页面及其样式和逻辑
+- interests.html / interests.js / interests.css
+  - 个人兴趣窗口页面及其样式和逻辑
 
 ## 2. 如何打开网站
 
@@ -30,6 +35,7 @@
 
 1. 打开首页：/index.html
 2. 点击页头“资料与链接库”进入资源页：/resources.html
+3. 点击页头“个人兴趣窗口”进入兴趣页：/interests.html
 
 ## 3. 博客文章怎么维护
 
@@ -118,10 +124,45 @@ https://caniuse.com/
 1. 写文章：在 posts/ 新建 .md
 2. 登记文章：更新 posts/index.json
 3. 补资源：在 resources/index.json 增加文档或外链
-4. 本地预览：检查分类是否正确、链接是否可点击
-5. 提交发布
+4. 维护兴趣页：在 interests/anime.json 增加或修改番剧条目
+5. 本地预览：检查分类是否正确、链接与图片是否可显示
+6. 提交发布
 
-## 6. 常见问题
+## 6. 个人兴趣窗口怎么维护
+
+兴趣数据文件：interests/anime.json
+
+每条番剧结构：
+
+```json
+{
+  "title": "番剧名称",
+  "image": "图片地址（建议本地文件路径）",
+  "category": "分类名称",
+  "year": "年份",
+  "score": "评分",
+  "tags": ["标签1", "标签2"],
+  "review": "个人评价"
+}
+```
+
+字段说明：
+
+- title：番剧标题
+- image：封面图路径（示例：./assets/anime/saekano.svg）
+- category：分类（用于筛选和分组）
+- year：年份（可选）
+- score：评分（字符串或数字都可以）
+- tags：标签（可选）
+- review：你的主观评价
+
+展示规则：
+
+- 兴趣页会根据 category 自动生成筛选按钮
+- 在“全部”状态下，按分类自动分组展示
+- 图片建议放在 assets/anime/ 目录，便于统一管理
+
+## 7. 常见问题
 
 ### Q1：页面显示“加载失败”或空白
 
@@ -137,3 +178,8 @@ https://caniuse.com/
 
 - 检查 category 是否为空
 - 检查 JSON 条目是否成功加载
+
+### Q4：兴趣页图片不显示
+
+- 检查 image 路径是否正确
+- 建议使用相对路径，例如：./assets/anime/your-cover.svg
