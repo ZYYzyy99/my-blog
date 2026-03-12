@@ -1,0 +1,25 @@
+{
+  "posts": [
+    {
+      "file": "jinxing-notes.md",
+      "title": "笔记",
+      "date": "2026-03-12",
+      "tags": ["notes", "journal"],
+      "summary": "Yuanyu Zheng 的日常技术思考与随手记录。"
+    },
+    {
+      "file": "welcome.md",
+      "title": "Welcome to Signal Notes",
+      "date": "2026-03-12",
+      "tags": ["meta", "setup"],
+      "summary": "A short introduction and how this markdown-powered blog frontend works."
+    },
+    {
+      "file": "performance-tips.md",
+      "title": "Frontend Performance Tips I Reuse",
+      "date": "2026-03-10",
+      "tags": ["frontend", "performance"],
+      "summary": "A practical checklist for shipping quick and responsive interfaces."
+    }
+  ]
+}
