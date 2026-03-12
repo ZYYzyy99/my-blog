@@ -1,0 +1,52 @@
+{
+  "resources": [
+    {
+      "title": "本地发文使用指南",
+      "url": "./index.html#post=local-publish-guide.md",
+      "category": "博客维护",
+      "type": "document",
+      "tags": ["workflow", "markdown"],
+      "summary": "记录新增文章、填写索引和发布前检查清单。"
+    },
+    {
+      "title": "Markdown 语法速查",
+      "url": "https://www.markdownguide.org/basic-syntax/",
+      "category": "写作参考",
+      "type": "link",
+      "tags": ["markdown", "reference"],
+      "summary": "常用 Markdown 语法示例与规范说明。"
+    },
+    {
+      "title": "Web 性能优化清单",
+      "url": "./index.html#post=performance-tips.md",
+      "category": "前端工程",
+      "type": "document",
+      "tags": ["frontend", "performance"],
+      "summary": "博客内整理的前端性能优化实践。"
+    },
+    {
+      "title": "Can I Use",
+      "url": "https://caniuse.com/",
+      "category": "前端工程",
+      "type": "tool",
+      "tags": ["browser", "compatibility"],
+      "summary": "快速查看 CSS 与 JS 特性的浏览器兼容性。"
+    },
+    {
+      "title": "Git 使用笔记",
+      "url": "./index.html#post=git.md",
+      "category": "工程基础",
+      "type": "document",
+      "tags": ["git", "notes"],
+      "summary": "常用 git 命令与日常工作流速查。"
+    },
+    {
+      "title": "我的 CSDN 主页",
+      "url": "https://blog.csdn.net/2403_87485932?spm=1000.2115.3001.5343",
+      "category": "个人主页",
+      "type": "link",
+      "tags": ["csdn", "blog"],
+      "summary": "我的 CSDN 技术博客主页入口。"
+    }
+  ]
+}

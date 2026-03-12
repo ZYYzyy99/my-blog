@@ -23,8 +23,8 @@ body {
   font-family: "Chivo", "Segoe UI", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(circle at 12% 10%, rgba(196, 76, 36, 0.18), transparent 45%),
-    radial-gradient(circle at 88% 78%, rgba(32, 87, 111, 0.18), transparent 40%),
+    radial-gradient(circle at 14% 10%, rgba(196, 76, 36, 0.2), transparent 48%),
+    radial-gradient(circle at 90% 80%, rgba(32, 87, 111, 0.2), transparent 44%),
     linear-gradient(130deg, #f4f1e9 0%, #e8ecef 100%);
   padding: 3rem 1.2rem 4rem;
   overflow-x: hidden;
@@ -73,22 +73,19 @@ body {
 
 .site-title {
   margin: 0.45rem 0 0;
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
-  line-height: 0.96;
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  line-height: 0.95;
   font-weight: 800;
 }
 
 .site-subtitle {
   margin: 0.9rem 0 0;
-  max-width: 64ch;
+  max-width: 62ch;
   color: var(--muted);
 }
 
-.header-actions {
+.back-home {
   margin-top: 1rem;
-}
-
-.header-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -102,26 +99,9 @@ body {
   transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
 }
 
-.header-link:hover {
+.back-home:hover {
   background: rgba(255, 255, 255, 0.92);
   border-color: rgba(196, 76, 36, 0.5);
-  transform: translateY(-1px);
-}
-
-.back-button {
-  margin-top: 1.2rem;
-  border: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.65);
-  color: var(--text);
-  padding: 0.55rem 0.95rem;
-  border-radius: 999px;
-  font-family: inherit;
-  cursor: pointer;
-  transition: background 180ms ease, transform 180ms ease;
-}
-
-.back-button:hover {
-  background: rgba(255, 255, 255, 0.92);
   transform: translateY(-1px);
 }
 
@@ -182,22 +162,22 @@ body {
   color: #f4f7fa;
 }
 
-.post-list {
+.resource-list {
   margin-top: 1rem;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 0.9rem;
 }
 
-.post-group {
+.resource-group {
   grid-column: 1 / -1;
 }
 
-.post-group + .post-group {
+.resource-group + .resource-group {
   margin-top: 0.25rem;
 }
 
-.post-group-title {
+.resource-group-title {
   margin: 0.2rem 0 0.75rem;
   font-size: 0.98rem;
   letter-spacing: 0.08em;
@@ -205,121 +185,74 @@ body {
   text-transform: uppercase;
 }
 
-.post-group-grid {
+.resource-group-grid {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   gap: 0.9rem;
 }
 
-.post-card {
+.resource-card {
   grid-column: span 6;
-  text-align: left;
+  display: block;
+  text-decoration: none;
   border: 1px solid rgba(24, 28, 34, 0.12);
   background: rgba(255, 255, 255, 0.78);
   border-radius: 1rem;
   padding: 1rem;
-  font: inherit;
   color: inherit;
-  cursor: pointer;
   transform-origin: 50% 50%;
   transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
-.post-card:hover {
+.resource-card:hover {
   transform: translateY(-4px);
   border-color: rgba(196, 76, 36, 0.48);
   box-shadow: 0 10px 18px rgba(12, 20, 28, 0.12);
 }
 
-.post-card-date,
-.post-card-tags {
+.resource-card-meta {
   margin: 0;
-  font-size: 0.78rem;
-  color: var(--accent-2);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
 }
 
-.post-card-category {
-  margin: 0.35rem 0 0;
-  display: inline-block;
+.resource-card-category,
+.resource-card-type {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
   font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.resource-card-category {
+  background: rgba(32, 87, 111, 0.15);
+  color: #204456;
+}
+
+.resource-card-type {
+  background: rgba(196, 76, 36, 0.16);
   color: #7f3924;
 }
 
-.post-card-title {
-  margin: 0.55rem 0 0.45rem;
+.resource-card-title {
+  margin: 0.65rem 0 0.45rem;
   font-size: 1.2rem;
   line-height: 1.2;
 }
 
-.post-card-summary {
+.resource-card-summary {
   margin: 0;
   color: var(--muted);
   line-height: 1.45;
 }
 
-.post-panel {
-  padding: clamp(1rem, 3vw, 2rem);
-  animation: fade-slide 440ms ease-out both;
-}
-
-.post-meta {
-  margin: 0;
+.resource-card-tags {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
   color: var(--accent-2);
-  font-size: 0.82rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-}
-
-.post-title {
-  margin: 0.65rem 0 0;
-  font-size: clamp(1.5rem, 4vw, 2.5rem);
-}
-
-.post-content {
-  margin-top: 1.2rem;
-  font-family: "Source Serif 4", Georgia, serif;
-  line-height: 1.75;
-  font-size: 1.08rem;
-}
-
-.post-content h1,
-.post-content h2,
-.post-content h3 {
-  font-family: "Chivo", "Segoe UI", sans-serif;
-  line-height: 1.2;
-  margin-top: 1.6rem;
-  margin-bottom: 0.6rem;
-}
-
-.post-content pre {
-  overflow-x: auto;
-  padding: 0.85rem;
-  border-radius: 0.75rem;
-  background: #1a1f28;
-  color: #ecf2f8;
-}
-
-.post-content code {
-  font-family: "Cascadia Code", "Consolas", monospace;
-  font-size: 0.93em;
-}
-
-.post-content blockquote {
-  margin: 1rem 0;
-  border-left: 4px solid rgba(196, 76, 36, 0.5);
-  padding-left: 0.9rem;
-  color: #2f3b46;
-}
-
-.post-content img {
-  max-width: 100%;
-  border-radius: 0.8rem;
-}
-
-.post-content a {
-  color: var(--accent);
 }
 
 @keyframes fade-slide {
@@ -335,7 +268,7 @@ body {
 }
 
 @media (max-width: 900px) {
-  .post-card {
+  .resource-card {
     grid-column: span 12;
   }
 }
@@ -345,8 +278,7 @@ body {
     padding: 1.4rem 0.9rem 2.2rem;
   }
 
-  .list-panel,
-  .post-panel {
+  .list-panel {
     border-radius: 0.9rem;
   }
 

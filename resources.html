@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>资料与链接库 | Signal Notes</title>
+    <meta
+      name="description"
+      content="Yuanyu Zheng 的资料与链接库，支持按分类管理文档资料与常用链接。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Chivo:wght@400;600;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./resources.css" />
+  </head>
+  <body>
+    <div class="bg-shape bg-shape-a" aria-hidden="true"></div>
+    <div class="bg-shape bg-shape-b" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <p class="site-kicker">Knowledge Assets</p>
+      <h1 class="site-title">资料与链接库</h1>
+      <p class="site-subtitle">
+        集中存放文档资料、工具地址与常用参考链接，支持分类管理与快速检索。
+      </p>
+      <a class="back-home" href="./index.html">返回博客首页</a>
+    </header>
+
+    <main class="layout">
+      <section class="panel list-panel">
+        <div class="panel-head">
+          <h2>全部资源</h2>
+          <p id="listHint">正在加载 ./resources/index.json ...</p>
+        </div>
+        <div id="resourceFilters" class="category-filters" aria-label="资源分类"></div>
+        <div id="resourceList" class="resource-list" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <template id="resourceCardTemplate">
+      <a class="resource-card" target="_blank" rel="noopener noreferrer">
+        <p class="resource-card-meta">
+          <span class="resource-card-category"></span>
+          <span class="resource-card-type"></span>
+        </p>
+        <h3 class="resource-card-title"></h3>
+        <p class="resource-card-summary"></p>
+        <p class="resource-card-tags"></p>
+      </a>
+    </template>
+
+    <script src="./resources.js" defer></script>
+  </body>
+</html>

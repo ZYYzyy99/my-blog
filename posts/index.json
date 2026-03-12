@@ -16,14 +16,7 @@
       "tags": ["notes", "journal"],
       "summary": "Yuanyu Zheng 的日常技术思考与随手记录。"
     },
-     {
-      "file": "git.md",
-      "title": "git使用",
-      "date": "2026-03-12",
-      "category": "入门使用笔记",
-      "tags": ["notes", "journal"],
-      "summary": "git速查"
-    },
+     
     {
       "file": "welcome.md",
       "title": "Welcome to Signal Notes",
@@ -39,6 +32,14 @@
       "category": "前端",
       "tags": ["frontend", "performance"],
       "summary": "A practical checklist for shipping quick and responsive interfaces."
+    },
+    {
+      "file": "git.md",
+      "title": "git使用",
+      "date": "2026-03-12",
+      "category": "入门使用笔记",
+      "tags": ["notes", "journal"],
+      "summary": "git速查"
     }
   ]
 }
