@@ -319,11 +319,19 @@ body {
   font-size: clamp(1.5rem, 4vw, 2.5rem);
 }
 
-.post-content {
+.post-layout {
   margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+  gap: 1.1rem;
+  align-items: start;
+}
+
+.post-content {
   font-family: "Source Serif 4", Georgia, serif;
   line-height: 1.75;
   font-size: 1.08rem;
+  min-width: 0;
 }
 
 .post-content h1,
@@ -364,6 +372,63 @@ body {
   color: var(--accent);
 }
 
+.post-toc {
+  position: sticky;
+  top: 1rem;
+  border: 1px solid rgba(24, 28, 34, 0.14);
+  border-radius: 0.85rem;
+  background: rgba(255, 255, 255, 0.74);
+  padding: 0.8rem 0.75rem;
+}
+
+.post-toc-title {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+
+.post-toc-nav {
+  margin-top: 0.55rem;
+  max-height: calc(100vh - 6rem);
+  overflow: auto;
+}
+
+.post-toc-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.28rem;
+}
+
+.toc-item a {
+  display: inline-block;
+  color: #1e2f3a;
+  text-decoration: none;
+  line-height: 1.35;
+}
+
+.toc-item a:hover {
+  color: var(--accent);
+}
+
+.toc-level-1 {
+  font-weight: 700;
+}
+
+.toc-level-2 {
+  padding-left: 0.55rem;
+  font-size: 0.95rem;
+}
+
+.toc-level-3 {
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: #455460;
+}
+
 @keyframes fade-slide {
   from {
     opacity: 0;
@@ -379,6 +444,15 @@ body {
 @media (max-width: 900px) {
   .post-card {
     grid-column: span 12;
+  }
+
+  .post-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .post-toc {
+    position: static;
+    order: -1;
   }
 }
 

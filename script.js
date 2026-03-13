@@ -9,6 +9,8 @@ const categoryFilters = document.getElementById("categoryFilters");
 const postMeta = document.getElementById("postMeta");
 const postTitle = document.getElementById("postTitle");
 const postContent = document.getElementById("postContent");
+const postToc = document.getElementById("postToc");
+const postTocNav = document.getElementById("postTocNav");
 const backButton = document.getElementById("backButton");
 const postCardTemplate = document.getElementById("postCardTemplate");
 
@@ -40,6 +42,67 @@ function deriveTitleFromFile(file) {
     .filter(Boolean)
     .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
     .join(" ");
+}
+
+function createHeadingSlug(text) {
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[\s\u3000]+/g, "-")
+    .replace(/[^\w\u4e00-\u9fa5-]/g, "")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function renderPostToc() {
+  if (!postToc || !postTocNav) return;
+
+  postTocNav.innerHTML = "";
+  const headings = [...postContent.querySelectorAll("h1, h2, h3")];
+  if (!headings.length) {
+    postToc.hidden = true;
+    return;
+  }
+
+  const usedIds = new Set();
+  const list = document.createElement("ul");
+  list.className = "post-toc-list";
+
+  headings.forEach((heading, index) => {
+    const text = heading.textContent ? heading.textContent.trim() : "";
+    if (!text) return;
+
+    let id = heading.id || createHeadingSlug(text) || `section-${index + 1}`;
+    while (usedIds.has(id)) {
+      id = `${id}-${index + 1}`;
+    }
+
+    usedIds.add(id);
+    heading.id = id;
+
+    const item = document.createElement("li");
+    const level = Number(heading.tagName.slice(1));
+    item.className = `toc-item toc-level-${Math.min(Math.max(level, 1), 3)}`;
+
+    const link = document.createElement("a");
+    link.href = "#";
+    link.textContent = text;
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      heading.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    item.appendChild(link);
+    list.appendChild(item);
+  });
+
+  if (!list.children.length) {
+    postToc.hidden = true;
+    return;
+  }
+
+  postTocNav.appendChild(list);
+  postToc.hidden = false;
 }
 
 function resolveCategory(entry) {
@@ -255,6 +318,7 @@ async function renderPostByFile(file) {
     postContent.innerHTML = DOMPurify.sanitize(rendered, {
       USE_PROFILES: { html: true },
     });
+    renderPostToc();
 
     showPostView();
     window.scrollTo({ top: 0, behavior: "smooth" });
