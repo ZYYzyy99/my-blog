@@ -121,7 +121,7 @@ function normalizeCatalog(data) {
   const list = Array.isArray(data) ? data : data?.posts;
   if (!Array.isArray(list)) return [];
 
-  return list
+  const normalized = list
     .map((entry) => {
       if (typeof entry === "string") {
         return { file: entry, title: deriveTitleFromFile(entry) };
@@ -139,6 +139,23 @@ function normalizeCatalog(data) {
       };
     })
     .filter(Boolean);
+
+  return normalized.sort((a, b) => {
+    const timeA = Date.parse(a.date || "");
+    const timeB = Date.parse(b.date || "");
+    const validA = Number.isFinite(timeA);
+    const validB = Number.isFinite(timeB);
+
+    if (validA && validB && timeA !== timeB) {
+      return timeB - timeA;
+    }
+
+    if (validA !== validB) {
+      return validA ? -1 : 1;
+    }
+
+    return (a.title || "").localeCompare(b.title || "", "zh-CN");
+  });
 }
 
 function getCategoryStats(posts) {
