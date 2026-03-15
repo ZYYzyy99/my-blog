@@ -14,6 +14,10 @@ const postTocNav = document.getElementById("postTocNav");
 const backButton = document.getElementById("backButton");
 const postCardTemplate = document.getElementById("postCardTemplate");
 
+let imageLightbox = null;
+let imageLightboxImg = null;
+let imageLightboxCaption = null;
+
 /** @type {Array<{file:string,title:string,date?:string,tags?:string[],summary?:string,category?:string}>} */
 let postCatalog = [];
 let activeCategory = "全部";
@@ -316,6 +320,96 @@ function showPostView() {
   backButton.hidden = false;
 }
 
+function toPostRelativeUrl(postFile, rawUrl) {
+  if (typeof rawUrl !== "string" || !rawUrl.trim()) return rawUrl;
+  if (/^(?:[a-z][a-z\d+.-]*:|\/|#|data:)/i.test(rawUrl)) return rawUrl;
+
+  const postDir = postFile.includes("/")
+    ? postFile.slice(0, postFile.lastIndexOf("/") + 1)
+    : "";
+  const base = new URL(`${POSTS_DIR}${postDir}`, window.location.href);
+  return new URL(rawUrl, base).href;
+}
+
+function rewritePostAssetUrls(postFile) {
+  const nodes = postContent.querySelectorAll("img[src], source[src], video[src], audio[src]");
+  nodes.forEach((node) => {
+    const raw = node.getAttribute("src");
+    const resolved = toPostRelativeUrl(postFile, raw);
+    if (resolved && resolved !== raw) {
+      node.setAttribute("src", resolved);
+    }
+  });
+}
+
+function ensureImageLightbox() {
+  if (imageLightbox) return;
+
+  imageLightbox = document.createElement("div");
+  imageLightbox.className = "image-lightbox";
+  imageLightbox.hidden = true;
+  imageLightbox.innerHTML = `
+    <button class="image-lightbox-close" type="button" aria-label="关闭图片预览">×</button>
+    <img class="image-lightbox-img" alt="" />
+    <p class="image-lightbox-caption"></p>
+  `;
+
+  imageLightboxImg = imageLightbox.querySelector(".image-lightbox-img");
+  imageLightboxCaption = imageLightbox.querySelector(".image-lightbox-caption");
+
+  imageLightbox.addEventListener("click", (event) => {
+    if (event.target === imageLightbox || event.target.closest(".image-lightbox-close")) {
+      closeImageLightbox();
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeImageLightbox();
+    }
+  });
+
+  document.body.appendChild(imageLightbox);
+}
+
+function openImageLightbox(src, altText) {
+  ensureImageLightbox();
+  if (!imageLightbox || !imageLightboxImg) return;
+
+  imageLightboxImg.src = src;
+  imageLightboxImg.alt = altText || "图片预览";
+
+  if (imageLightboxCaption) {
+    imageLightboxCaption.textContent = altText || "点击空白处或按 Esc 关闭";
+  }
+
+  imageLightbox.hidden = false;
+  document.body.classList.add("is-lightbox-open");
+}
+
+function closeImageLightbox() {
+  if (!imageLightbox || imageLightbox.hidden) return;
+
+  imageLightbox.hidden = true;
+  document.body.classList.remove("is-lightbox-open");
+
+  if (imageLightboxImg) {
+    imageLightboxImg.removeAttribute("src");
+    imageLightboxImg.removeAttribute("alt");
+  }
+}
+
+function bindPostImageZoom() {
+  postContent.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLImageElement)) return;
+    if (!target.src) return;
+
+    event.preventDefault();
+    openImageLightbox(target.src, target.alt || "");
+  });
+}
+
 async function renderPostByFile(file) {
   const item = postCatalog.find((post) => post.file === file);
   if (!item) {
@@ -335,6 +429,7 @@ async function renderPostByFile(file) {
     postContent.innerHTML = DOMPurify.sanitize(rendered, {
       USE_PROFILES: { html: true },
     });
+    rewritePostAssetUrls(item.file);
     renderPostToc();
 
     showPostView();
@@ -373,5 +468,7 @@ backButton.addEventListener("click", () => {
 window.addEventListener("hashchange", () => {
   refreshViewFromHash();
 });
+
+bindPostImageZoom();
 
 bootstrap();

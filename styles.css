@@ -366,6 +366,54 @@ body {
 .post-content img {
   max-width: 100%;
   border-radius: 0.8rem;
+  cursor: zoom-in;
+}
+
+body.is-lightbox-open {
+  overflow: hidden;
+}
+
+.image-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  background: rgba(0, 0, 0, 0.94);
+}
+
+.image-lightbox[hidden] {
+  display: none;
+}
+
+.image-lightbox-img {
+  max-width: min(96vw, 1200px);
+  max-height: 84vh;
+  border-radius: 0.75rem;
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+}
+
+.image-lightbox-caption {
+  margin: 0.7rem 0 0;
+  color: #f2f6fb;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.image-lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.36);
+  background: rgba(255, 255, 255, 0.16);
+  color: #f8fbff;
+  font-size: 1.3rem;
+  line-height: 1;
+  cursor: pointer;
 }
 
 .post-content a {

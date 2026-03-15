@@ -34,12 +34,28 @@
       "summary": "A practical checklist for shipping quick and responsive interfaces."
     },
     {
+      "file": "图论第一章随记.md",
+      "title": "图论第一章随记",
+      "date": "2026-03-15",
+      "category": "图论",
+      "tags": ["csdn", "blog"],
+      "summary": "图论第一章"
+    },
+    {
       "file": "git.md",
       "title": "git使用",
       "date": "2026-03-12",
       "category": "入门使用笔记",
       "tags": ["notes", "journal"],
       "summary": "git速查"
+    },
+    {
+      "file": "gdb调试.md",
+      "title": "gdb调试",
+      "date": "2026-03-16",
+      "category": "操作系统实验",
+      "tags": ["notes", "journal"],
+      "summary": "gdb调试速查"
     }
   ]
 }
