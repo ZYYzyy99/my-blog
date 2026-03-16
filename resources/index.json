@@ -17,6 +17,14 @@
       "summary": "常用 Markdown 语法示例与规范说明。"
     },
     {
+      "title": "Makefile 教程",
+      "url": "http://c.biancheng.net/makefile/",
+      "category": "写作参考",
+      "type": "link",
+      "tags": ["makefile", "build", "tutorial"],
+      "summary": "Makefile 基础语法与实践教程。"
+    },
+    {
       "title": "Web 性能优化清单",
       "url": "./index.html#post=performance-tips.md",
       "category": "前端工程",
