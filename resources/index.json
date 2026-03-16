@@ -19,10 +19,18 @@
     {
       "title": "Makefile 教程",
       "url": "http://c.biancheng.net/makefile/",
-      "category": "写作参考",
+      "category": "操作系统",
       "type": "link",
       "tags": ["makefile", "build", "tutorial"],
       "summary": "Makefile 基础语法与实践教程。"
+    },
+    {
+      "title": "gdb 调试手册",
+      "url": "./index.html#post=gdb调试.md",
+      "category": "操作系统",
+      "type": "document",
+      "tags": ["gdb", "debug", "os"],
+      "summary": "操作系统实验里的 gdb 调试流程与常用指令速查。"
     },
     {
       "title": "Web 性能优化清单",
