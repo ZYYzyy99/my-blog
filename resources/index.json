@@ -63,6 +63,14 @@
       "type": "link",
       "tags": ["csdn", "blog"],
       "summary": "我的 CSDN 技术博客主页入口。"
+    },
+    {
+      "title": "Cradle 画集（最喜爱）",
+      "url": "https://cradle.cc/",
+      "category": "兴趣收藏",
+      "type": "link",
+      "tags": ["画集", "最喜爱", "收藏"],
+      "summary": "我最喜爱的画集网站。"
     }
   ]
 }
