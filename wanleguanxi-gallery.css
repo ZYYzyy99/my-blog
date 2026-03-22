@@ -19,6 +19,11 @@ body {
   min-height: 100%;
 }
 
+html.is-lightbox-open,
+body.is-lightbox-open {
+  overflow: hidden;
+}
+
 body {
   font-family: "Chivo", "Segoe UI", sans-serif;
   color: var(--text);

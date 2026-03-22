@@ -33,6 +33,37 @@ if (galleryImages.length) {
   let startY = 0;
   let isTouching = false;
   let lastTapAt = 0;
+  let savedScrollY = 0;
+  let savedBodyPaddingRight = "";
+
+  function lockPageScroll() {
+    savedScrollY = window.scrollY || window.pageYOffset || 0;
+    const scrollbarGap = window.innerWidth - document.documentElement.clientWidth;
+    savedBodyPaddingRight = document.body.style.paddingRight || "";
+
+    document.documentElement.classList.add("is-lightbox-open");
+    document.body.classList.add("is-lightbox-open");
+    document.body.style.top = `-${savedScrollY}px`;
+    document.body.style.position = "fixed";
+    document.body.style.left = "0";
+    document.body.style.right = "0";
+    document.body.style.width = "100%";
+    if (scrollbarGap > 0) {
+      document.body.style.paddingRight = `${scrollbarGap}px`;
+    }
+  }
+
+  function unlockPageScroll() {
+    document.documentElement.classList.remove("is-lightbox-open");
+    document.body.classList.remove("is-lightbox-open");
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+    document.body.style.paddingRight = savedBodyPaddingRight;
+    window.scrollTo(0, savedScrollY);
+  }
 
   function wrapIndex(index) {
     const total = imageList.length;
@@ -77,11 +108,13 @@ if (galleryImages.length) {
     lightboxImg.alt = "";
     lightboxCaption.textContent = "";
     resetTransform();
+    unlockPageScroll();
   }
 
   function openLightbox(index) {
     showImage(index);
     lightbox.hidden = false;
+    lockPageScroll();
   }
 
   function goNext() {
