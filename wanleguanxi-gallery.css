@@ -164,6 +164,14 @@ body {
   display: none;
 }
 
+.lightbox figure {
+  margin: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .lightbox-img {
   max-width: min(1100px, 96vw);
   max-height: 88vh;
@@ -208,5 +216,14 @@ body {
 
   .gallery-item {
     grid-column: span 12;
+  }
+
+  .lightbox {
+    padding: 0.7rem;
+  }
+
+  .lightbox-img {
+    max-width: 94vw;
+    max-height: 82vh;
   }
 }
