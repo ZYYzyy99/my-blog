@@ -1,6 +1,38 @@
 {
   "posts": [
     {
+      "file": "B站视频下载教程(yt-dlp工程化).md",
+      "title": "B 站视频下载教程（yt-dlp 工程化可复用版）",
+      "date": "2026-03-22",
+      "category": "视频爬虫",
+      "tags": ["视频爬虫", "yt-dlp", "bilibili", "ffmpeg", "cookies", "powershell"],
+      "summary": "一次配置长期可用的 B 站下载方案，覆盖 cookies、AV1、PowerShell 和 ffmpeg 常见坑。"
+    },
+    {
+      "file": "软工项目分工与开发流程方案.md",
+      "title": "软件工程大作业分工与开发流程方案（6人版）",
+      "date": "2026-03-22",
+      "category": "入门使用笔记",
+      "tags": ["software-engineering", "teamwork", "planning"],
+      "summary": "按四层系统架构拆分6人职责，提供模块归属、开发流程、里程碑与验收标准。"
+    },
+    {
+      "file": "文件路径书写.md",
+      "title": "文件路径书写：Linux命令与Makefile依赖路径指南",
+      "date": "2026-03-22",
+      "category": "操作系统实验",
+      "tags": ["linux", "path", "makefile", "os-lab"],
+      "summary": "系统讲清绝对/相对路径、当前工作目录、Makefile依赖路径与常见排错方法。"
+    },
+    {
+      "file": "makefile使用.md",
+      "title": "操作系统内核工程中的Makefile设计",
+      "date": "2026-03-22",
+      "category": "操作系统实验",
+      "tags": ["makefile", "kernel", "build-system", "os-lab"],
+      "summary": "从字符串本质到工程化能力，完整讲解OS内核场景下的Makefile设计与自动化构建流程。"
+    },
+    {
       "file": "local-publish-guide.md",
       "title": "本地发文使用指南",
       "date": "2026-03-12",
