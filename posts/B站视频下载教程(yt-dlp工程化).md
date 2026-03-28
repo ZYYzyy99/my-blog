@@ -1,4 +1,4 @@
-# B 站视频下载教程（yt-dlp 工程化可复用版）
+# （看第五点就行）B 站视频下载教程（yt-dlp 工程化可复用版）
 
 作者：Yuanyu Zheng
 
@@ -68,17 +68,21 @@ D:\software\爬虫\cookies.txt
 yt-dlp --cookies cookies.txt https://www.bilibili.com/video/BV1PEw1zRELR
 ```
 
-## 5. 推荐参数（避开 AV1，优先可播放性）
+## （看这个够了）5. ！！！推荐参数（避开 AV1，优先可播放性）
 
 ```powershell
-yt-dlp --cookies cookies.txt -f "bv*[vcodec^=avc1]+ba/b" -o "%(title)s.%(ext)s" https://www.bilibili.com/video/BV1PEw1zRELR
+yt-dlp --cookies cookies.txt -f "bv*[vcodec^=avc1]+ba[ext=m4a]/b[ext=mp4]/b" -o "%(title)s.%(ext)s" "url"
 ```
 
 参数说明：
 
+windows powershell后面的url要加引号
+
 - --cookies cookies.txt：使用登录态，解锁更高清晰度和受限内容。
 - -f "bv\*[vcodec^=avc1]+ba/b"：优先下载 H.264（avc1）视频并搭配最佳音频；若不可用则回退到 best。
 - -o "%(title)s.%(ext)s"：按标题命名输出文件。
+- 通常只需要改最后那个视频 URL 就行
+- yt-dlp --cookies cookies.txt -f "bv\*[vcodec^=avc1]+ba/b" "https://www.bilibili.com/video/BV19JQUBsEBq/?spm_id_from=333.788.videopod.sections&vd_source=33ad1d6fcb88f6cd97cba3aca8c0ef5b&p=2"
 
 ## 6. 下载结果
 
