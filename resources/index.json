@@ -72,5 +72,22 @@
       "tags": ["画集", "最喜爱", "收藏"],
       "summary": "我最喜爱的画集网站。"
     }
+      ,
+      {
+        "title": "李文周的Go语言教程",
+        "url": "https://liwenzhou.com/",
+        "category": "Go语言框架学习",
+        "type": "link",
+        "tags": ["go语言框架学习"],
+        "summary": "李文周的Go语言教程，涵盖Go基础与Web开发。"
+      },
+      {
+        "title": "Gin官方文档（中文）",
+        "url": "https://gin-gonic.com/zh-cn/docs/",
+        "category": "Go语言框架学习",
+        "type": "link",
+        "tags": ["go语言框架学习"],
+        "summary": "Gin框架官方中文文档，适合Go Web开发学习。"
+      }
   ]
 }
