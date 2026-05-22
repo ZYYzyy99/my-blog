@@ -96,6 +96,14 @@
       "category": "操作系统实验",
       "tags": ["gdb", "debug", "ai"],
       "summary": "gdb 调试手册（AI 生成版）。"
+    },
+    {
+      "file": "agent学习指南.md",
+      "title": "AI Agent 学习路线与资料库",
+      "date": "2026-05-22",
+      "category": "Agent学习指南",
+      "tags": ["agent", "AI", "learning-path", "datawhale", "LLM"],
+      "summary": "从 Datawhale Agent-Learning-Hub 整理的系统化 AI Agent 学习路线，覆盖 Stage 0~8 学习清单、项目阶梯、精选论文与资源。"
     }
   ]
 }
