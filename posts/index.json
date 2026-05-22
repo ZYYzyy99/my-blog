@@ -104,6 +104,14 @@
       "category": "Agent学习指南",
       "tags": ["agent", "AI", "learning-path", "datawhale", "LLM"],
       "summary": "从 Datawhale Agent-Learning-Hub 整理的系统化 AI Agent 学习路线，覆盖 Stage 0~8 学习清单、项目阶梯、精选论文与资源。"
+    },
+    {
+      "file": "图论提纲.md",
+      "title": "图论提纲",
+      "date": "2026-05-22",
+      "category": "图论",
+      "tags": ["图论", "graph-theory", "提纲", "复习"],
+      "summary": "图论课程系统复习提纲，覆盖图的基本概念（完全图、偶图、握手定理、度序列、子图、图运算、连通性、代数表示、最短路算法）与树（概念、性质、中心）。"
     }
   ]
 }
